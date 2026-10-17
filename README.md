@@ -1,25 +1,47 @@
-# Game Design Portfolio — GitHub Pages starter
+# Amaltash Sinha — Portfolio (reference guide)
 
-A responsive, dark cinematic portfolio template using plain HTML, CSS and JavaScript.
+## Folder map
+| Path | What it does | Edit often? |
+|---|---|---|
+| `index.html`, `project.html`, `games.html` | Empty page shells | No |
+| `css/style.css` | Look and colors (top `:root` block = palette/fonts) | Rarely |
+| `js/main.js` | Builds every page from the data files | Rarely |
+| `data/profile.js` | Name, bio, skills, links, education, résumé path | Sometimes |
+| `data/projects.js` | One block per project | Often |
+| `data/documents.js` | One block per GDD / LDD (Google Docs) | Often |
+| `data/experience.js` | Jobs, newest first | Sometimes |
+| `data/games.js` | Games page entries | Later |
+| `assets/images/`, `assets/` | Screenshots, covers, résumé PDF | Often |
 
-## Before publishing
-1. In `index.html`, replace `YOUR NAME`, the email address, and social links.
-2. Replace project titles, descriptions, years, and case-study text with accurate information about your work.
-3. Replace the sample Unsplash image URLs in `style.css` with your own screenshots or images.
-4. Add real project images to `assets/images/` if you prefer to host them in this repository. Example CSS:
-   `background-image: url("assets/images/level-final.jpg");`
-5. Open `index.html` locally in a browser to preview. For best testing, use VS Code's Live Server extension.
+## Put it online (free)
+1. Rename the repo to `amaltash-sinha` (Settings → General → Repository name). GitHub usernames and repo names can't contain spaces; underscores work in repo names but hyphens are standard.
+2. Upload everything in this folder to the repo root (so `index.html` sits at the top, with `css/`, `js/`, `data/`, `assets/` beside it). Delete the old `style.css` and `script.js`.
+3. Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
+4. Site address: `https://amaltash07.github.io/amaltash-sinha/`
+   (GitHub gives `username.github.io/repo-name`. A cleaner `amaltash-sinha.github.io` needs a new account named that, or a custom domain.)
 
-## Publish with GitHub Pages
-1. Create a GitHub repository named exactly `YOUR-GITHUB-USERNAME.github.io` (replace with your username).
-2. Upload `index.html`, `style.css`, `script.js`, and the `assets` folder to the repository root.
-3. In GitHub, open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Choose branch `main` and folder `/ (root)`, then click **Save**.
-6. Wait a few minutes. Your site should appear at `https://YOUR-GITHUB-USERNAME.github.io`.
+## Add a project
+1. Copy images into `assets/images/` (use short lowercase names, no spaces).
+2. In `data/projects.js`, copy a whole `{ ... }` block, give it a new unique `id`, fill the fields, add a comma between blocks.
+3. Pick `layout`: `"gallery"` (screenshots first), `"story"` (alternating image + text), `"docs"` (documentation first).
+4. Link documents by listing ids from `documents.js`: `docs: ["ruins-ldd"]`.
+5. Video: use the YouTube *embed* form `https://www.youtube.com/embed/VIDEO_ID`.
 
-## Important
-- GitHub Pages hosts static websites. This template does not include a server or database.
-- The external Google Fonts and sample Unsplash photos require internet access.
-- Use screenshots and artwork you own or have permission to publish.
-- Do not claim work you did not personally contribute. On case studies, clearly state your role and what collaborators did.
+## Add a GDD / LDD
+1. Google Doc → Share → General access → **Anyone with the link: Viewer**.
+2. Copy the code between `/d/` and `/edit` in its URL into `docId`.
+3. The site then shows **Read here** (embedded), **Download PDF**, and **Open**.
+
+## Résumé and contact form
+- Save your résumé as `assets/Amaltash_Sinha_Resume.pdf`.
+- The form opens the visitor's email app by default. For real form delivery, make a free account at formspree.io, create a form, and paste its URL into `formAction` in `profile.js`.
+
+## Custom domain later
+Buy a domain, then Settings → Pages → Custom domain. Add DNS records GitHub lists (A records for the apex, or a CNAME to `amaltash07.github.io`). Tick "Enforce HTTPS".
+
+## Common problems
+- **Unstyled page:** `css/style.css` is missing or in the wrong folder.
+- **Blank page:** a typo (missing comma or quote) in a `data/*.js` file. Press F12 → Console to see which line.
+- **Image missing:** file name case must match exactly (`Ruins.JPG` ≠ `ruins.jpg`).
+- **Changes not showing:** wait 1–2 minutes after pushing, then hard refresh (Ctrl+Shift+R).
+- **Preview locally:** double-click `index.html`; it works without a server.
