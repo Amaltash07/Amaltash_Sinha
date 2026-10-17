@@ -3,11 +3,12 @@ window.PROFILE = {
   name: "Amaltash Sinha",
   title: "Game Designer",
   subtitle: "Game Design · Level Design",
+  about: "i am me and me and me:,
   tagline: "I design worlds that teach, challenge, and reward the curious.",
-  heroLine: "I design spaces players",
+  heroLine: "I Design the world that player",
   heroAccent: "remember.",
-  intro: "Level and game designer building readable worlds, meaningful mechanics, and encounters that reward curiosity.",
-  focus: "Level · Gameplay · World",
+  intro: "Game and Level Designer building world from friction so that players could experience that world.",
+  focus: "Game.Player.Us",
   tools: "Unreal Engine · Unity",
   heroImage: "",                      // optional: "assets/images/hero.jpg" replaces the blueprint drawing
   process: [
