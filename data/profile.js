@@ -3,7 +3,6 @@ window.PROFILE = {
   name: "Amaltash Sinha",
   title: "Game Designer",
   subtitle: "Game Design · Level Design",
-  about: "i am me and me and me:,
   tagline: "I design worlds that teach, challenge, and reward the curious.",
   heroLine: "I Design the world that player",
   heroAccent: "remember.",
