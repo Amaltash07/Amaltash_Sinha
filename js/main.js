@@ -60,6 +60,7 @@ function wireEmbeds(root = document) {
 }
 
 /* ---------- HOME ---------- */
+const DOC_GROUPS = [["Game Breakdowns", "Breakdown", "Breakdowns are on the way."], ["Game Design Documents", "GDD", "GDDs are on the way."], ["Level Design Documents", "LDD", "LDDs are on the way."]];
 const head = (t, note = "") => `<div class="sec-head"><h2>${t}</h2><span class="meta">${esc(note)}</span></div>`;
 function home() {
   const links = P.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noreferrer">${esc(l.label)} ↗</a>`).join("");
@@ -75,7 +76,8 @@ function home() {
   <section id="projects" class="wrap">${head("Built with <em>purpose.</em>", "Selected work")}
     <div class="grid">${PROJECTS.map(projectCard).join("")}</div></section>
 
-  <section id="documents" class="wrap">${head("Design <em>documents.</em>", "GDD / LDD. Read here or download.")}${DOCUMENTS.map(docRow).join("")}</section>
+  <section id="documents" class="wrap">${head("Design <em>documents.</em>", "GDD / LDD. Read here or download.")}${DOC_GROUPS.map(([title, type, note]) => { const ds = DOCUMENTS.filter(d => d.type === type);
+      return `<div class="doc-group"><div class="group-head"><h3>${title}</h3><span class="meta">${ds.length ? ds.length + (ds.length > 1 ? " documents" : " document") : "Coming soon"}</span></div>${ds.length ? ds.map(docRow).join("") : `<div class="empty">${note}</div>`}</div>`; }).join("")}</section>
 
   <section id="about" class="wrap">${head("The <em>designer.</em>", "About")}<div class="about">
     <div class="bio">${P.bio.map((t, i) => `<p class="${i ? "" : "lead"}">${esc(t)}</p>`).join("")}
