@@ -4,7 +4,7 @@ const P = window.PROFILE, $ = (s, r = document) => r.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const ph = t => `<div class="ph">${esc(t)}</div>`;
 const img = (src, alt, fallback = "Add image") => src ? `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">` : ph(fallback);
-const gdoc = d => d.docId ? { view: `https://docs.google.com/document/d/${d.docId}/edit`, embed: `https://docs.google.com/document/d/${d.docId}/preview`, pdf: `https://docs.google.com/document/d/${d.docId}/export?format=pdf` } : null;
+const gdoc = d => d.url ? { view: d.url, pdf: d.url, embed: "" } : d.docId ? { view: `https://docs.google.com/document/d/${d.docId}/edit`, embed: `https://docs.google.com/document/d/${d.docId}/preview`, pdf: `https://docs.google.com/document/d/${d.docId}/export?format=pdf` } : null;
 const ORN = "";
 
 /* ---------- shared header / footer ---------- */
@@ -47,8 +47,8 @@ function docRow(d) {
   return `<div><div class="doc">
     <div><span class="tag meta">${esc(d.type)}</span> <span class="status ${ok ? "ok" : ""}">${esc(d.status)}</span>
     <h3 style="font-size:1.05rem;margin:.2rem 0">${esc(d.title)}</h3><span class="meta">${esc(d.desc)}</span></div>
-    <div>${g ? `<button class="btn" data-embed="${esc(g.embed)}">Read here</button><a class="btn" href="${g.pdf}">Download PDF</a>
-    <a class="btn" href="${g.view}" target="_blank" rel="noreferrer">Open</a>` : `<span class="meta">Coming soon</span>`}</div></div></div>`;
+    <div>${g ? `${g.embed ? `<button class="btn" data-embed="${esc(g.embed)}">Read here</button><a class="btn" href="${g.pdf}">Download PDF</a>` : ""}
+    <a class="btn" href="${g.view}" target="_blank" rel="noreferrer">${g.embed ? "Open" : "Open PDF"}</a>` : `<span class="meta">Coming soon</span>`}</div></div></div>`;
 }
 function wireEmbeds(root = document) {
   root.querySelectorAll("[data-embed]").forEach(b => b.onclick = () => {
@@ -117,7 +117,7 @@ function project() {
       <div><small>TEAM</small>${esc(p.team)}</div><div><small>DURATION</small>${esc(p.duration)}</div></div>
       ${p.links.filter(l => l.url).map(l => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noreferrer">${esc(l.label)}</a>`).join("")}</div>`,
     video: p.video ? `<iframe class="video" src="${esc(p.video)}" title="${esc(p.title)} video" allowfullscreen></iframe>` : "",
-    text: `<div class="prose"><h3>The problem</h3><p>${esc(p.problem)}</p><h3>The solution</h3><p>${esc(p.solution)}</p><h3>What I learned</h3><p>${esc(p.learned)}</p></div>`,
+    text: `<div class="prose">${(p.mechanics || []).length ? `<h3>Core mechanics</h3><ul>${p.mechanics.map(m => `<li>${esc(m)}</li>`).join("")}</ul>` : ""}${[["The problem", p.problem], ["What I built", p.solution], ["What I learned", p.learned]].filter(x => x[1]).map(([t, v]) => `<h3>${t}</h3><p>${esc(v)}</p>`).join("")}</div>`,
     gallery: `<div class="shots g2">${imgs.map(shot).join("")}</div>`,
     story: imgs.map((s, i) => `<div class="story-block">${shot(s, i)}<div class="prose" style="margin:0"><h3>${["The problem", "The solution", "What I learned"][i % 3]}</h3><p>${esc([p.problem, p.solution, p.learned][i % 3])}</p></div></div>`).join(""),
     docs: `<div class="sec-title" style="margin-top:3rem"><h2>Documentation</h2></div>${(p.docs || []).map(id => DOCUMENTS.find(d => d.id === id)).filter(Boolean).map(docRow).join("") || `<div class="empty">Add document ids to this project's "docs" list.</div>`}`
