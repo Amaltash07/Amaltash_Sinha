@@ -74,7 +74,7 @@ function home() {
   </div><figure class="hero-art">${P.heroImage ? `<img src="${esc(P.heroImage)}" alt="Featured level">` : BLUEPRINT}</figure></section>
 
   <section id="projects" class="wrap">${head("Built with <em>purpose.</em>", "Selected work")}
-    <div class="grid">${PROJECTS.map(projectCard).join("")}</div></section>
+    <div class="grid">${PROJECTS.filter(p => p.group !== "system").slice(0, 6).map(projectCard).join("")}</div></section>
 
   <section id="documents" class="wrap">${head("Design <em>documents.</em>", "GDD / LDD. Read here or download.")}${DOC_GROUPS.map(([title, type, note]) => { const ds = DOCUMENTS.filter(d => d.type === type);
       return `<div class="doc-group"><div class="group-head"><h3>${title}</h3><span class="meta">${ds.length ? ds.length + (ds.length > 1 ? " documents" : " document") : "Coming soon"}</span></div>${ds.length ? ds.map(docRow).join("") : `<div class="empty">${note}</div>`}</div>`; }).join("")}</section>
@@ -88,7 +88,7 @@ function home() {
     <div class="steps">${P.process.map(([t, d], i) => `<div class="step"><span class="num">0${i + 1}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("")}</div></section>
 
   <section id="experience" class="wrap">${head("Experience", "Newest first")}
-    ${EXPERIENCE.map(j => `<div class="job"><div><h3>${esc(j.role)}</h3><span class="meta">${esc(j.company)} · ${esc(j.dates)}</span></div><ul>${j.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</section>
+    ${EXPERIENCE.map(j => `<div class="job"><div><h3>${esc(j.role)}</h3><span class="meta">${esc(j.company)} · ${esc(j.dates)}</span></div>${j.points.length ? `<ul>${j.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</section>
 
   <section id="contact" class="wrap contact">${head("Have a world to <em>build?</em>", "Contact")}
     <div class="contact-grid"><div><p class="intro">Open to game design and level design roles. Send a message or write to me directly.</p>
@@ -132,13 +132,10 @@ function project() {
 
 /* ---------- GAMES PAGE ---------- */
 function games() {
-  const label = { browser: "Play in browser", download: "Download", video: "Watch video" };
-  $("#app").innerHTML = `<section><div class="wrap"><div class="sec-title">${ORN}<h1 style="font-size:2.2rem">Games</h1></div>` +
-    (GAMES.length ? `<div class="grid">${GAMES.map(g => `<a class="card" href="${esc(g.url)}" target="_blank" rel="noreferrer">
-      <div class="thumb">${img(g.cover, g.title)}</div><div class="body"><span class="tag meta">${esc(g.year)}</span><h3>${esc(g.title)}</h3>
-      <p>${esc(g.blurb)}</p><span class="meta">${label[g.play] || "Open"}</span></div></a>`).join("")}</div>`
-      : `<div class="empty">Games are on the way. Meanwhile, play my builds on <a class="tag" href="https://droanzer.itch.io/" target="_blank" rel="noreferrer">itch.io</a>.</div>`) +
-    `</div></section>`;
+  const groups = [["Released on Steam", "steam", "Steam releases are on the way."], ["Major projects", "major", "Projects are on the way."], ["Systems I've developed", "system", "Systems are on the way."]];
+  $("#app").innerHTML = `<section class="wrap">${head("Games &amp; <em>systems.</em>", "Released titles, major projects, and systems")}` +
+    groups.map(([t, g, note]) => { const ps = PROJECTS.filter(p => p.group === g);
+      return `<div class="doc-group"><div class="group-head"><h3>${t}</h3><span class="meta">${ps.length || "Coming soon"}</span></div>${ps.length ? `<div class="grid flat">${ps.map(projectCard).join("")}</div>` : `<div class="empty">${note}</div>`}</div>`; }).join("") + `</section>`;
 }
 
 shell();

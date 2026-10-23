@@ -38,6 +38,7 @@ nav a:hover,.nav-cta{color:var(--text)}
 .sec-head h2{font-size:clamp(2rem,4.6vw,3.4rem)}
 /* project cards */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}.grid .card:first-child{grid-column:1/-1}
+.grid.flat .card:first-child{grid-column:auto}.grid.flat .card:first-child .thumb{aspect-ratio:16/9}
 .card{display:block;border:1px solid var(--line);background:var(--panel);transition:border-color .2s}.card:hover{border-color:var(--acc)}
 .thumb{aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;background:
  linear-gradient(var(--line) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/28px 28px,#111110}

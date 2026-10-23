@@ -10,7 +10,6 @@
 | `data/projects.js` | One block per project | Often |
 | `data/documents.js` | One block per GDD / LDD (Google Docs) | Often |
 | `data/experience.js` | Jobs, newest first | Sometimes |
-| `data/games.js` | Games page entries | Later |
 | `assets/images/`, `assets/` | Screenshots, covers, résumé PDF | Often |
 
 ## Put it online (free)
@@ -45,3 +44,6 @@ Buy a domain, then Settings → Pages → Custom domain. Add DNS records GitHub 
 - **Image missing:** file name case must match exactly (`Ruins.JPG` ≠ `ruins.jpg`).
 - **Changes not showing:** wait 1–2 minutes after pushing, then hard refresh (Ctrl+Shift+R).
 - **Preview locally:** double-click `index.html`; it works without a server.
+
+## Games page groups
+Each project has `group`: `"steam"` (released on Steam), `"major"` (major projects), or `"system"` (systems you built). The Games page sorts by this. Add a Steam link in a project's `links`.

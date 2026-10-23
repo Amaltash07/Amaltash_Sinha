@@ -6,7 +6,7 @@ window.PROFILE = {
   tagline: "I design experiences that challenge, engage, and tell stories.",
   heroLine: "I design spaces players",
   heroAccent: "remember.",
-  intro: "Game and level designer with 1.5 years in the industry, working across level design, narrative design, and combat systems in Unreal and Unity.",
+  intro: "Game and level designer with more than two years of hands-on experience, working across level design, narrative design, and combat systems in Unreal and Unity.",
   focus: "Level · Quest · Narrative",
   tools: "Unreal · Unity · Godot",
   heroImage: "",                      // optional: "assets/images/hero.jpg" replaces the blueprint drawing
@@ -26,9 +26,10 @@ window.PROFILE = {
     // { label: "YouTube", url: "https://youtube.com/..." },
   ],
   bio: [
-    "I design experiences that challenge, engage, and tell stories. I have 1.5 years in the game industry, working across level design, narrative design, and combat systems to build gameplay that feels meaningful and fun.",
-    "I build in Unreal, Unity, and Godot, and I care about what makes a game work: systems, player flow, and story structure. Whether I'm shaping the player's journey or refining a mechanic, I aim for play that is impactful and memorable.",
-    "As a Dungeon Master I learned to pace discovery and build tension in real time. As a mentor to aspiring designers, I learned to explain my decisions clearly, which shows in my design documents."
+    "I design experiences that challenge, engage, and tell stories. I have more than two years of hands-on game design experience and have worked on multiple projects across level design, narrative design, and combat systems.",
+    "My main focus is game feel and game mechanics: how an action responds, how a system teaches itself, and how every moment plays in the player's hands. Whether I'm shaping a player's journey or refining a mechanic, I aim for play that is impactful and memorable.",
+    "As a Dungeon Master, I have built narrative stories around the worlds I run, shaping the history, characters, and conflicts that players discover as they explore. Running these live taught me to pace discovery, build tension, and adapt when players do the unexpected. I bring that to quest, narrative, and level design.",
+    "I also teach game design as a professor at Artemisia College of Art and Design and mentor aspiring designers. Explaining my decisions clearly shows in my design documents."
   ],
   skills: [
     { group: "Engines",        items: [["Unreal Engine","Intermediate"],["Unity","Intermediate"],["Godot",""]] },

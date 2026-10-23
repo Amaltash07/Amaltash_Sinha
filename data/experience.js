@@ -1,7 +1,8 @@
 /* ============ WORK EXPERIENCE — newest first. Copy a block per job. ============ */
 window.EXPERIENCE = [
-  { role: "Game Designer / Level Designer", company: "Add company", dates: "Add dates",
-    points: ["Add what you owned and shipped.", "Add a measurable result or lesson.", "Add tools or systems you used."] },
-  { role: "Mentor — Game & Level Design", company: "Independent", dates: "Add dates",
-    points: ["Mentored aspiring designers on level flow, documentation, and portfolio building."] }
+  { role: "Game and Level Designer", company: "Centrelocus", dates: "Add dates", points: [] },
+  { role: "Researcher", company: "Entry Level", dates: "Add dates", points: [] },
+  { role: "Lead Level Designer", company: "Blood Nexus Studio", dates: "Add dates", points: [] },
+  { role: "Co-founder and Game Designer", company: "Summer Snow Games", dates: "Add dates", points: [] },
+  { role: "Game Design Professor", company: "Artemisia College of Art and Design", dates: "Add dates", points: [] }
 ];
