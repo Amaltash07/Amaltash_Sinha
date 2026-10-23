@@ -132,10 +132,19 @@ function project() {
 
 /* ---------- GAMES PAGE ---------- */
 function games() {
-  const groups = [["Released on Steam", "steam", "Steam releases are on the way."], ["Major projects", "major", "Projects are on the way."], ["Systems I've developed", "system", "Systems are on the way."]];
+   // [title, group name in projects.js, empty message, number of columns]
+  const groups = [
+    ["Released on Steam",     "steam",  "Steam releases are on the way.", 2],
+    ["Major projects",        "major",  "Projects are on the way.",       3],
+    ["Systems I've developed","system", "Systems are on the way.",        3]
+  ];
   $("#app").innerHTML = `<section class="wrap">${head("Games &amp; <em>systems.</em>", "Released titles, major projects, and systems")}` +
-    groups.map(([t, g, note]) => { const ps = PROJECTS.filter(p => p.group === g);
-      return `<div class="doc-group"><div class="group-head"><h3>${t}</h3><span class="meta">${ps.length || "Coming soon"}</span></div>${ps.length ? `<div class="grid flat">${ps.map(projectCard).join("")}</div>` : `<div class="empty">${note}</div>`}</div>`; }).join("") + `</section>`;
+    groups.map(([t, g, note, cols]) => {
+      const ps = PROJECTS.filter(p => p.group === g);
+      return `<div class="doc-group"><div class="group-head"><h3>${t}</h3><span class="meta">${ps.length || "Coming soon"}</span></div>${
+        ps.length ? `<div class="grid flat c${cols}">${ps.map(projectCard).join("")}</div>` : `<div class="empty">${note}</div>`
+      }</div>`;
+    }).join("") + `</section>`;
 }
 
 shell();
